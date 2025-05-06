@@ -12,7 +12,7 @@ body {
 /* Fondo en móviles */
 @media (max-width: 768px) {
     body {
-        background: url('https://images.hdqwalls.com/download/big-kyogre-pokemon-4k-7y-2048x1152.jpg') no-repeat center center fixed;
+        background-color: #222;
         background-attachment: scroll;
         background-size: contain;
         background-position: center top;
