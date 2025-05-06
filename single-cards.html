@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cartas Individuales</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+        <ul>
+            <li><a href="cara.html">Inicio</a></li>
+            <li><a href="index.html">ETB</a></li>
+            <li><a href="booster.html">Booster Packs</a></li>
+            <li><a href="single-cards.html">Cartas Individuales</a></li>
+        </ul>
+    </nav>
+    
+  </header>
+
+ 
+
+
+  <section class="galeria">
+    <div class="imagen">
+      <img src="https://tcgplayer-cdn.tcgplayer.com/product/590027_in_1000x1000.jpg" alt="Pikachu V">
+      <p class="titulo">Pikachu V</p>
+      <p class="precio">$4.99</p>
+      <button class="agregar-carrito">Agregar al carrito</button>
+    </div>
+
+    <div class="imagen">
+      <img src="https://images.pokemontcg.io/swsh7/189_hires.png" alt="Rayquaza VMAX">
+      <p class="titulo">Rayquaza VMAX</p>
+      <p class="precio">$19.99</p>
+      <button class="agregar-carrito">Agregar al carrito</button>
+    </div>
+
+    <div class="imagen">
+      <img src="https://images.pokemontcg.io/swsh12/TG23_hires.png" alt="Charizard Trainer Gallery">
+      <p class="titulo">Charizard TG</p>
+      <p class="precio">$14.99</p>
+      <button class="agregar-carrito">Agregar al carrito</button>
+    </div>
+
+    <div class="imagen">
+      <img src="https://images.pokemontcg.io/swsh3/117_hires.png" alt="Scizor VMAX">
+      <p class="titulo">Scizor VMAX</p>
+      <p class="precio">$7.50</p>
+      <button class="agregar-carrito">Agregar al carrito</button>
+    </div>
+
+    <div class="imagen">
+        <img src="https://tcgplayer-cdn.tcgplayer.com/product/610516_in_1000x1000.jpg" alt="Scizor VMAX">
+        <p class="titulo">Scizor VMAX</p>
+        <p class="precio">$7.50</p>
+        <button class="agregar-carrito">Agregar al carrito</button>
+      </div>
+
+      <div class="imagen">
+        <img src="https://tcgplayer-cdn.tcgplayer.com/product/284137_in_1000x1000.jpg" alt="Scizor VMAX">
+        <p class="titulo">Scizor VMAX</p>
+        <p class="precio">$7.50</p>
+        <button class="agregar-carrito">Agregar al carrito</button>
+      </div>
+
+      <div class="imagen">
+        <img src="https://tcgplayer-cdn.tcgplayer.com/product/610508_in_1000x1000.jpg" alt="Scizor VMAX">
+        <p class="titulo">Scizor VMAX</p>
+        <p class="precio">$7.50</p>
+        <button class="agregar-carrito">Agregar al carrito</button>
+      </div>
+  </section>
+
+  <div id="cart-panel" class="cart-panel">
+    <h2>Tu carrito</h2>
+    <ul id="cart-items"></ul>
+    <p id="total">Total: $0.00</p>
+    <button onclick="goToCheckout()">Finalizar Compra</button>
+    <button onclick="toggleCart()">Cerrar</button>
+  </div>
+
+  <script>
+   // Función para obtener el carrito desde localStorage
+function getCartFromStorage() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  return cart;
+}
+
+// Función para guardar el carrito en localStorage
+function saveCartToStorage(cart) {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Cargar el carrito cuando la página se carga
+let cart = getCartFromStorage();
+const cartIcon = document.getElementById("cart-icon");
+const cartPanel = document.getElementById("cart-panel");
+const cartItemsList = document.getElementById("cart-items");
+const totalPrice = document.getElementById("total");
+
+// Función para actualizar la vista del carrito
+function updateCart() {
+  cartItemsList.innerHTML = "";
+  let total = 0;
+
+  cart.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = `${item.titulo} - $${item.precio.toFixed(2)}`;
+    cartItemsList.appendChild(li);
+    total += item.precio;
+  });
+
+  totalPrice.textContent = `Total: $${total.toFixed(2)}`;
+  cartIcon.textContent = `🛒 Carrito (${cart.length})`;
+
+  // Guardar los cambios en localStorage
+  saveCartToStorage(cart);
+}
+
+// Función para mostrar u ocultar el carrito
+function toggleCart() {
+  cartPanel.style.display = cartPanel.style.display === "block" ? "none" : "block";
+}
+
+// Función para procesar el checkout
+function checkout() {
+  alert("Gracias por tu compra!");
+  cart = []; // Limpiar el carrito
+  updateCart(); // Actualizar la vista
+}
+
+// Función para mostrar el toast
+function showToast() {
+  const toast = document.getElementById('toast');
+  const sound = document.getElementById('pokeball-sound');
+
+  // Reproducir sonido
+  sound.play();
+
+  // Mostrar el toast y aplicar animación
+  toast.style.display = 'flex';
+  toast.classList.add('animate');
+
+  // Después de 3 segundos, ocultar el toast
+  setTimeout(() => {
+    toast.style.display = 'none';
+    toast.classList.remove('animate');
+  }, 3000);
+}
+
+// Event listener para agregar al carrito
+const botonesCarrito = document.querySelectorAll('.agregar-carrito');
+botonesCarrito.forEach(boton => {
+  boton.addEventListener('click', () => {
+    const titulo = boton.parentElement.querySelector('.titulo').textContent;
+    const precio = parseFloat(boton.parentElement.querySelector('.precio').textContent.replace('$', ''));
+    cart.push({ titulo, precio });
+    updateCart(); // Actualizar carrito después de agregar un producto
+
+    // Llamar a showToast después de agregar un producto
+    showToast();
+  });
+});
+
+function removeFromCart(index) {
+    // Elimina el producto del carrito
+    cart.splice(index, 1);
+    updateCart(); // Actualiza el carrito
+    alert('Producto eliminado del carrito');
+}
+
+function goToCheckout() {
+  window.location.href = "checkout.html";
+}
+
+
+// Agrega un botón de eliminar en el carrito
+function updateCart() {
+    cartItemsList.innerHTML = ""; 
+    let total = 0;
+    
+    cart.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `${item.titulo} - $${item.precio.toFixed(2)} <button onclick="removeFromCart(${index})">Eliminar</button>`;
+        cartItemsList.appendChild(li);
+        total += item.precio;
+    });
+
+    totalPrice.textContent = `Total: $${total.toFixed(2)}`;
+    cartIcon.textContent = `🛒 Carrito (${cart.length})`;
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+
+// Iniciar con la vista actualizada del carrito
+updateCart();
+
+  </script>
+
+<script src="cart.js"></script>
+
+<div id="toast">
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="Pokeball" class="pokeball-icon" />
+    <span id="toast-message">¡Añadido al carrito!</span>
+  </div>
+  <audio id="pokeball-sound" src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"></audio>
+  
+
+</body>
+</html>

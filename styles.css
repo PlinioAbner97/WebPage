@@ -1,0 +1,515 @@
+body {
+    font-family: Arial, cursive;
+    background: url('https://images.hdqwalls.com/download/big-kyogre-pokemon-4k-7y-2048x1152.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: linear-gradient(90deg, rgba(26, 26, 46, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.alphacoders.com/118/1186769.jpg') center center no-repeat;
+    background-size: cover;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 12px;
+    margin-top: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 16px;
+    background-color: #222;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover, nav ul li a.activo {
+    background-color: #e94560;
+}
+
+
+#cart-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    background-color: #e94560;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.banner {
+    background-image: url('');
+    background-size: cover;
+    background-position: center;
+    padding: 80px 20px;
+    text-align: center;
+    color: #fff;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
+}
+
+.banner h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.banner p {
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.boton-banner {
+    background-color: #ce0022;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 10px;
+    transition: background-color 0.3s;
+}
+
+.boton-banner:hover {
+    background-color: #ff6b81;
+}
+
+.galeria {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.galeria h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #ffcc00;
+}
+
+.imagen {
+    display: inline-block;
+    background-color: rgba(30, 30, 47, 0.9);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 16px;
+    width: 200px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+    transition: transform 0.2s;
+}
+
+.imagen:hover {
+    transform: scale(1.05);
+}
+
+.imagen img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.titulo {
+    font-size: 10px;
+    margin: 10px 0 5px;
+    color: #ffffff;
+}
+
+.precio {
+    font-size: 10px;
+    color: #e94560;
+    margin-bottom: 10px;
+}
+
+.agregar-carrito {
+    background-color: #d6b812;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+.agregar-carrito:hover {
+    background-color: #ff6b81;
+}
+
+.testimonios {
+    padding: 40px 20px;
+    background-color: #131324;
+    text-align: center;
+}
+
+.testimonios h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #ffcc00;
+}
+
+.testimonial {
+    margin-bottom: 20px;
+    font-size: 10px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.testimonial span {
+    display: block;
+    margin-top: 5px;
+    font-size: 8px;
+    color: #aaa;
+}
+
+.cart-panel {
+    display: none;
+    position: fixed;
+    right: 20px;
+    top: 80px;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 12px;
+    width: 300px;
+    z-index: 1000;
+    color: white;
+    box-shadow: 0 0 10px black;
+}
+
+.cart-panel h2 {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.cart-panel ul {
+    list-style: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.cart-panel li {
+    font-size: 10px;
+    padding: 5px 0;
+}
+
+.cart-panel p {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.cart-panel button {
+    background-color: #e94560;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    margin-top: 5px;
+    border-radius: 6px;
+    font-size: 10px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 10px;
+    background-color: #0a0a17;
+    color: #888;
+}
+
+#toast {
+    display: none;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background-color: #1a1a2e;
+    color: #fff;
+    border: 2px solid #e94560;
+    border-radius: 50px;
+    padding: 10px 16px;
+    font-size: 12px;
+    font-family: 'Press Start 2P', cursive;
+    box-shadow: 0 0 10px #e94560;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    animation: none;
+  }
+  
+  #toast.animate {
+    animation: pokeball-shake 0.5s ease-in-out;
+  }
+  
+  .pokeball-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  @keyframes pokeball-shake {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-10px);
+    }
+    50% {
+      transform: translateX(10px);
+    }
+    75% {
+      transform: translateX(-10px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+/* Estilos generales para el tema oscuro */
+body.dark-theme {
+    background-color: #1f1f1f; /* Fondo oscuro */
+    color: #e0e0e0; /* Texto claro */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Esto asegura que la página cubra todo el alto de la pantalla */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo del encabezado */
+header {
+    background-color: #131313; /* Fondo muy oscuro */
+    color: #f5f5f5; /* Texto claro */
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+    font-size: 2em;
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    color: #f5f5f5;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #ffcc00; /* Color amarillo para los enlaces */
+}
+
+/* Estilo del formulario de checkout */
+.checkout-form {
+    background-color: #282828; /* Fondo gris oscuro */
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.checkout-form h2 {
+    color: #f5f5f5;
+    margin-bottom: 15px;
+}
+
+.checkout-form h3 {
+    color: #f5f5f5;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.checkout-form label {
+    color: #bbb;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.checkout-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #333;
+    color: #f5f5f5;
+}
+
+.checkout-form input:focus {
+    border-color: #ffcc00;
+}
+
+.checkout-form button {
+    background-color: #4caf50; /* Verde elegante */
+    color: white;
+    font-size: 18px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.checkout-form button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo del resumen del carrito */
+.cart-summary {
+    background-color: #282828; /* Fondo gris oscuro */
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.cart-summary h2 {
+    color: #f5f5f5;
+    margin-bottom: 15px;
+}
+
+.cart-summary ul {
+    list-style: none;
+    padding: 0;
+}
+
+.cart-summary ul li {
+    color: #ccc;
+    font-size: 16px;
+}
+
+.cart-summary #total {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffcc00; /* Color destacado para el total */
+}
+
+/* Estilo del pie de página */
+footer {
+    background-color: #131313;
+    color: #bbb;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9em;
+    border-top: 1px solid #444;
+    margin-top: auto; /* Esto asegura que el footer se mantenga al final de la página */
+}
+
+
+
+/* Estilo para pantallas pequeñas */
+@media (max-width: 768px) {
+    .checkout-form {
+        width: 90%;
+    }
+}
+
+/* Estilo base oscuro */
+body.dark-theme {
+    background-color: #2f2f2f; /* Fondo oscuro */
+    color: #e0e0e0; /* Texto claro */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #1e1e1e; /* Fondo más oscuro para el header */
+    border-bottom: 1px solid #444;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #f2f2f2;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #bbb;
+}
+
+/* Sección del mensaje de agradecimiento */
+.thank-you {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+/* Estilo del botón de "Regresar" */
+.thank-you button {
+    background-color: #4caf50; /* Verde elegante */
+    color: white;
+    font-size: 18px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.thank-you button:hover {
+    background-color: #45a049; /* Un tono más oscuro de verde */
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: #1e1e1e; /* Fondo oscuro */
+    color: #bbb;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.9em;
+    border-top: 1px solid #444;
+}
+
+/* Agregar un toque de sombra a los elementos */
+header, footer, .thank-you {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+

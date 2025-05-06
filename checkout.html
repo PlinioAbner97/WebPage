@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Pokémon</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+    <header>
+        <nav>
+            <ul>
+                <li><a href="cara.html">Inicio</a></li>
+                <li><a href="index.html">ETB</a></li>
+                <li><a href="booster.html">Booster Packs</a></li>
+                <li><a href="single-cards.html">Cartas Individuales</a></li>
+            </ul>
+        </nav>
+        <h1>Proceso de Compra</h1>
+    </header>
+
+    <main>
+        <section class="checkout-form">
+            <h2>Formulario de Compra</h2>
+            <form id="checkout-form" onsubmit="processCheckout(event)">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" placeholder="Ingresa tu nombre" required>
+
+                <label for="address">Dirección:</label>
+                <input type="text" id="address" placeholder="Ingresa tu dirección" required>
+
+                <label for="city">Ciudad:</label>
+                <input type="text" id="city" placeholder="Ingresa tu ciudad" required>
+
+                <label for="zipcode">Código Postal:</label>
+                <input type="text" id="zipcode" placeholder="Ingresa tu código postal" required>
+
+                <!-- Nueva sección para la información de la tarjeta -->
+                <h3>Información de la Tarjeta</h3>
+
+                <label for="card-number">Número de tarjeta:</label>
+                <input type="text" id="card-number" placeholder="XXXX XXXX XXXX XXXX" required>
+
+                <label for="expiry-date">Fecha de vencimiento:</label>
+                <input type="text" id="expiry-date" placeholder="MM/AA" required>
+
+                <label for="cvv">Código de seguridad (CVV):</label>
+                <input type="text" id="cvv" placeholder="XXX" required>
+
+                <button type="submit">Finalizar Compra</button>
+            </form>
+        </section>
+
+        <section class="cart-summary">
+            <h2>Resumen de Carrito</h2>
+            <ul id="cart-items"></ul>
+            <p id="total">Total: $0.00</p>
+        </section>
+    </main>
+
+    
+
+    <script>
+        // Función para procesar el checkout
+        function processCheckout(event) {
+            event.preventDefault(); // Evitar el envío del formulario
+
+            const name = document.getElementById("name").value;
+            const address = document.getElementById("address").value;
+            const city = document.getElementById("city").value;
+            const zipcode = document.getElementById("zipcode").value;
+            const cardNumber = document.getElementById("card-number").value;
+            const expiryDate = document.getElementById("expiry-date").value;
+            const cvv = document.getElementById("cvv").value;
+
+            if (!name || !address || !city || !zipcode || !cardNumber || !expiryDate || !cvv) {
+                alert("Por favor ingresa todos los datos.");
+                return;
+            }
+
+            // Mostrar mensaje de gracias
+            alert(`Gracias por tu compra, ${name}! Tu pedido será enviado a ${address}, ${city}, ${zipcode}.`);
+
+            // Limpiar el carrito y redirigir a la página de agradecimiento
+            localStorage.setItem('cart', JSON.stringify([]));
+            window.location.href = 'thank-you.html'; // Redirige a la página de agradecimiento
+        }
+
+        // Función para cargar el carrito
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsList = document.getElementById("cart-items");
+            const totalPrice = document.getElementById("total");
+
+            let total = 0;
+            cartItemsList.innerHTML = ""; // Limpiar los elementos del carrito
+
+            cart.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = `${item.titulo} - $${item.precio.toFixed(2)}`;
+                cartItemsList.appendChild(li);
+                total += item.precio;
+            });
+
+            totalPrice.textContent = `Total: $${total.toFixed(2)}`;
+        }
+
+        // Cargar el carrito al cargar la página
+        window.onload = loadCart;
+    </script>
+</body>
+</html>

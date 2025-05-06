@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Productos Pokémon</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+     
+        <nav>
+            <ul>
+                <li><a href="cara.html">Inicio</a></li>
+                <li><a href="index.html">ETB</a></li>
+                <li><a href="booster.html">Booster Packs</a></li>
+                <li><a href="single-cards.html">Cartas Individuales</a></li>
+            </ul>
+        </nav>
+
+        
+        <h1>Galería de Productos Pokémon</h1>
+        <div id="cart-icon" onclick="toggleCart()">🛒 Carrito (0)</div>
+    </header>
+
+    <section class="galeria">
+        <!-- Productos -->
+        <div class="imagen">
+            <img src="https://cdn.chaoscards.co.uk/uploads/prod_img/2_197737_e.png?v=-62169983925" alt="Lost Origins ETB">
+            <p class="titulo">Lost Origins ETB</p>
+            <p class="precio">$39.99</p>
+            <button class="agregar-carrito">Agregar al carrito</button>
+        </div>
+
+        <div class="imagen">
+            <img src="https://cdn11.bigcommerce.com/s-ua4dd/images/stencil/1280x1280/products/52716/142687/Sword_Shield_-_Astral_Radiance_ETB__16864.1646951363.jpg?c=2" alt="Sword Shield Astral Radiance ETB">
+            <p class="titulo">Sword Shield Astral Radiance ETB</p>
+            <p class="precio">$89.99</p>
+            <button class="agregar-carrito">Agregar al carrito</button>
+        </div>
+
+        <div class="imagen">
+            <img src="https://shop.drcommodore.it/wp-content/uploads/2022/10/Pokemon-Trading-Card-Game-Sword-and-Shield-Silver-Tempest-Elite-Trainer-Box-scaled.jpeg" alt="Silver Tempest ETB">
+            <p class="titulo">Silver Tempest ETB</p>
+            <p class="precio">$69.99</p>
+            <button class="agregar-carrito">Agregar al carrito</button>
+        </div>
+
+        <div class="imagen">
+            <img src="https://i5.walmartimages.com/asr/5be961c5-3919-45e6-ad55-9163adfcae8c_2.97cb553acd21816306e990d9737eceaf.jpeg" alt="Sun and Moon ETB">
+            <p class="titulo">Sun and Moon ETB</p>
+            <p class="precio">$49.99</p>
+            <button class="agregar-carrito">Agregar al carrito</button>
+        </div>
+
+        <div class="imagen">
+            <img src="https://cdn11.bigcommerce.com/s-ua4dd/images/stencil/1280x1280/products/54834/147941/pku85050__01533.1652372323.jpg?c=2" alt="Pokemon Go ETB">
+            <p class="titulo">Pokemon Go ETB</p>
+            <p class="precio">$39.99</p>
+            <button class="agregar-carrito">Agregar al carrito</button>
+        </div>
+
+        <div class="imagen">
+            <img src="https://cdn11.bigcommerce.com/s-pmynegjr7m/images/stencil/960w/products/10618/4719/PokemonTCGScarletViolet--ObsidianFlamesEliteTrainerBox_EN-2701x2574-07a38bd_0ec2f7e7-3312-41db-8b59-bda466a2f253_960x__49174.1685299616.png?c=1" alt="Obsidian Flames ETB">
+            <p class="titulo">Obsidian Flames ETB</p>
+            <p class="precio">$69.99</p>
+            <button class="agregar-carrito">Agregar al carrito</button>
+        </div>
+
+        <div class="imagen">
+            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6471/6471032cv12d.jpg" alt="Evolving Skies ETB">
+            <p class="titulo">Evolving Skies ETB</p>
+            <p class="precio">$99.99</p>
+            <button class="agregar-carrito">Agregar al carrito</button>
+        </div>
+    </section>
+
+    <div id="cart-panel" class="cart-panel">
+        <h2>Tu carrito</h2>
+        <ul id="cart-items"></ul>
+        <p id="total">Total: $0.00</p>
+        <button onclick="goToCheckout()">Finalizar Compra</button>
+        <button onclick="toggleCart()">Cerrar</button>
+    </div>
+<script>
+    // Función para obtener el carrito desde localStorage
+function getCartFromStorage() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  return cart;
+}
+
+// Función para guardar el carrito en localStorage
+function saveCartToStorage(cart) {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Cargar el carrito cuando la página se carga
+let cart = getCartFromStorage();
+const cartIcon = document.getElementById("cart-icon");
+const cartPanel = document.getElementById("cart-panel");
+const cartItemsList = document.getElementById("cart-items");
+const totalPrice = document.getElementById("total");
+
+// Función para actualizar la vista del carrito
+function updateCart() {
+  cartItemsList.innerHTML = "";
+  let total = 0;
+
+  cart.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = `${item.titulo} - $${item.precio.toFixed(2)}`;
+    cartItemsList.appendChild(li);
+    total += item.precio;
+  });
+
+  totalPrice.textContent = `Total: $${total.toFixed(2)}`;
+  cartIcon.textContent = `🛒 Carrito (${cart.length})`;
+
+  // Guardar los cambios en localStorage
+  saveCartToStorage(cart);
+}
+
+// Función para mostrar u ocultar el carrito
+function toggleCart() {
+  cartPanel.style.display = cartPanel.style.display === "block" ? "none" : "block";
+}
+
+// Función para procesar el checkout
+function checkout() {
+  alert("Gracias por tu compra!");
+  cart = []; // Limpiar el carrito
+  updateCart(); // Actualizar la vista
+}
+
+// Función para mostrar el toast
+function showToast() {
+  const toast = document.getElementById('toast');
+  const sound = document.getElementById('pokeball-sound');
+
+  // Reproducir sonido
+  sound.play();
+
+  // Mostrar el toast y aplicar animación
+  toast.style.display = 'flex';
+  toast.classList.add('animate');
+
+  // Después de 3 segundos, ocultar el toast
+  setTimeout(() => {
+    toast.style.display = 'none';
+    toast.classList.remove('animate');
+  }, 3000);
+}
+
+// Event listener para agregar al carrito
+const botonesCarrito = document.querySelectorAll('.agregar-carrito');
+botonesCarrito.forEach(boton => {
+  boton.addEventListener('click', () => {
+    const titulo = boton.parentElement.querySelector('.titulo').textContent;
+    const precio = parseFloat(boton.parentElement.querySelector('.precio').textContent.replace('$', ''));
+    cart.push({ titulo, precio });
+    updateCart(); // Actualizar carrito después de agregar un producto
+
+    // Llamar a showToast después de agregar un producto
+    showToast();
+  });
+});
+
+function removeFromCart(index) {
+    // Elimina el producto del carrito
+    cart.splice(index, 1);
+    updateCart(); // Actualiza el carrito
+    alert('Producto eliminado del carrito');
+}
+
+// Agrega un botón de eliminar en el carrito
+function updateCart() {
+    cartItemsList.innerHTML = ""; 
+    let total = 0;
+    
+    cart.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `${item.titulo} - $${item.precio.toFixed(2)} <button onclick="removeFromCart(${index})">Eliminar</button>`;
+        cartItemsList.appendChild(li);
+        total += item.precio;
+    });
+
+    totalPrice.textContent = `Total: $${total.toFixed(2)}`;
+    cartIcon.textContent = `🛒 Carrito (${cart.length})`;
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function goToCheckout() {
+  window.location.href = "checkout.html";
+}
+
+
+
+// Iniciar con la vista actualizada del carrito
+updateCart();
+
+</script>
+    <script src="cart.js"></script>
+
+    <div id="toast">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="Pokeball" class="pokeball-icon" />
+        <span id="toast-message">¡Añadido al carrito!</span>
+      </div>
+      <audio id="pokeball-sound" src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"></audio>
+      
+</body>
+</html>
+
