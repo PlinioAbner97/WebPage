@@ -14,7 +14,7 @@ body {
     body {
         background: url('https://images.hdqwalls.com/download/big-kyogre-pokemon-4k-7y-2048x1152.jpg') no-repeat center center fixed;
         background-attachment: scroll;
-        background-size: cover;
+        background-size: contain;
         background-position: center top;
     }
 }
