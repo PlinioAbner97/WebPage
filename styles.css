@@ -64,7 +64,7 @@ nav ul li a {
 }
 
 nav ul li a:hover, nav ul li a.activo {
-    background-color: #e94560;
+    background-color: #3b020c;
 }
 
 /* Menú responsivo */
@@ -81,7 +81,7 @@ nav ul li a:hover, nav ul li a.activo {
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: #e94560;
+    background-color: #e9082d;
     padding: 10px 16px;
     border-radius: 20px;
     font-size: 12px;
@@ -105,7 +105,7 @@ nav ul li a:hover, nav ul li a.activo {
 }
 
 .boton-banner {
-    background-color: #ce0022;
+    background-color: #e9082d;
     color: #fff;
     text-decoration: none;
     padding: 10px 16px;
@@ -115,7 +115,7 @@ nav ul li a:hover, nav ul li a.activo {
 }
 
 .boton-banner:hover {
-    background-color: #ff6b81;
+    background-color: #3b020c;
 }
 
 /* ======== GALERÍA ======== */
@@ -157,7 +157,7 @@ nav ul li a:hover, nav ul li a.activo {
 
 .precio {
     font-size: 0.9em;
-    color: #e94560;
+    color: #e9082d;
     margin-bottom: 10px;
 }
 
@@ -172,7 +172,7 @@ nav ul li a:hover, nav ul li a.activo {
 }
 
 .agregar-carrito:hover {
-    background-color: #ff6b81;
+    background-color: #3b020c;
 }
 
 /* ======== TESTIMONIOS ======== */
@@ -241,7 +241,7 @@ nav ul li a:hover, nav ul li a.activo {
 }
 
 .cart-panel button {
-    background-color: #e94560;
+    background-color: #f20a30;
     border: none;
     color: white;
     padding: 8px 12px;
